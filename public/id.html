@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Link Extractor</title>
+    <style>
+        body {
+            min-height: 15vh;
+            font-family: fantasy;
+            background: url("https://images.unsplash.com/photo-1580234811497-9df7fd2f357e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGdhbWluZ3xlbnwwfHwwfHx8MA%3D%3D") 50% 50% / cover;
+            background-attachment: fixed;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+body{
+    filter: saturate(1);
+}
+        label {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: rgba(97, 218, 251, 0.8);
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+        }
+
+        button:hover {
+            background-color: rgba(79, 163, 209, 0.8);
+        }
+
+        #formattedLinkContainer {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #formattedLink {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+        }
+
+        #formattedLink:read-only {
+            background-color: rgba(43, 46, 57, 0.8);
+        }
+
+        #copyButton {
+            padding: 10px 15px;
+            background-color: rgba(128, 227, 255, 0.63);
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+        }
+
+        #copyButton:hover {
+            background-color: rgba(79, 163, 209, 0.8);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>This is Devloper mode access </h1>
+    <p>you wont understand anything please go back </p>
+    <label for="googleDriveLink">Enter Google Drive Video Link:</label>
+    <input type="text" id="googleDriveLink" placeholder="Paste your Google Drive link here">
+    <button onclick="extractAndDisplay()">Generate Formatted Link</button>
+    
+    <div id="formattedLinkContainer" style="margin-top: 20px; display: none;">
+        <label for="formattedLink">Formatted Link:</label>
+        <input type="text" id="formattedLink" readonly>
+        <button onclick="copyToClipboard()">Copy</button>
+    </div> <br><br><br><br><br>
+    <button class="pg">Devloper mode </button>
+<script>
+   var pg= document.getElementsByClassName("pg");
+   alert("You  are not the admin : Cant show you  the Real devloper tools for the Security reseaon so showing you uploading zone  ")
+   alert(" Sorry ! The devloper has changed the logs You wont be able to upload before 7 december  ")
+</script>
+    
+    <script>
+        function extractAndDisplay() {
+           
+            var googleDriveLink = document.getElementById("googleDriveLink").value;
+
+           
+            var videoId = extractVideoIdFromLink(googleDriveLink);
+
+            if (videoId) {
+              
+                var formattedLink = `<a href="VidFile.html?id=${videoId}" data-video-id="${videoId}">`;
+
+                document.getElementById("formattedLink").value = formattedLink;
+                document.getElementById("formattedLinkContainer").style.display = "block";
+            }
+        }
+
+        function extractVideoIdFromLink(link) {
+
+            var match = link.match(/\/file\/d\/([^\/]+)\//);
+            if (match && match[1]) {
+                return match[1];
+            } else {
+                alert("Invalid Google Drive link. Please enter a valid link.");
+                return null;
+            }
+        }
+
+        function copyToClipboard() {
+            var formattedLink = document.getElementById("formattedLink");
+
+            // Select the text in the input field
+            formattedLink.select();
+            formattedLink.setSelectionRange(0, 99999); /*For mobile devices*/
+
+            // Copy the text to the clipboard
+            document.execCommand("copy");
+
+            // Alert user that the text has been copied
+            // alert("Formatted link copied to clipboard!");
+        }
+    </script>
+</body>
+
+</html>
